@@ -1,4 +1,4 @@
-import { HeroCircuit } from "@/components/hero-circuit";
+import { HeroTopo } from "@/components/hero-topo";
 
 export function HeroSection() {
   return (
@@ -34,7 +34,7 @@ export function HeroSection() {
         <div className="flex flex-wrap justify-center gap-4 md:justify-start">
           <a
             href="#timeline"
-            className="rounded-lg bg-brand px-6 py-3 text-[0.95rem] font-semibold text-[#1b1509] transition-colors hover:bg-brand-hover"
+            className="rounded-lg bg-brand px-6 py-3 text-[0.95rem] font-semibold text-[#0d1a17] transition-colors hover:bg-brand-hover"
           >
             How I Got Here
           </a>
@@ -55,7 +55,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <HeroCircuit />
+      <HeroTopo />
     </section>
   );
 }
