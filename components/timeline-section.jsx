@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot, FaBolt, FaRobot, FaBriefcase, FaCompass, FaPeopleGroup, FaChartLine, FaFlask } from "react-icons/fa6";
 import { Reveal } from "@/components/reveal";
 
 const NODES = [
   {
     era: "Childhood",
     pin: "Childhood",
+    icon: FaBolt,
     title: "Fan remotes",
     body: [
       "As a kid I pulled apart fan remotes just to see how the switches worked, then tried to figure out if I could get one remote to control a fan in a different room. It never fully worked. I kept doing it anyway, because something in the room was operating on rules I could actually go find.",
@@ -17,6 +18,7 @@ const NODES = [
   {
     era: "Middle School",
     pin: "Middle School",
+    icon: FaRobot,
     title: "Robotics, and a bag of snow",
     body: [
       "By middle school the same habit had a name: robotics. I was team lead, which meant I helped decide how we'd design and build the robot, but I also spent plenty of time elbow deep in assembly, testing, and the slow process of debugging. What I loved was that a defect was never a mystery for long. You could see it, chase down why it was happening, change one thing, and test again.",
@@ -26,6 +28,7 @@ const NODES = [
   {
     era: "High School",
     pin: "High School",
+    icon: FaBriefcase,
     title: "DECA and the idea of strategy",
     body: [
       "High school pointed that same question somewhere new. Through DECA I started noticing that two ideas could take the same amount of effort and land in completely different places, and I wanted to know why one worked and the other didn't.",
@@ -34,6 +37,7 @@ const NODES = [
   {
     era: "College Decision",
     pin: "Choosing ME",
+    icon: FaCompass,
     title: "Choosing mechanical engineering",
     body: [
       "I looked at finance seriously before college and picked mechanical engineering instead. Not because the curiosity about business went away, but because I figured it would follow me regardless of major, and I wanted four years that forced a different kind of discipline first. Betting on the harder unknown felt like the right trade.",
@@ -42,6 +46,7 @@ const NODES = [
   {
     era: "Ohio State",
     pin: "Phi Chi Theta",
+    icon: FaPeopleGroup,
     title: "Phi Chi Theta",
     body: [
       "In college I joined Phi Chi Theta, a professional business fraternity, and ended up on the recruitment team. That put me in the room for a question I hadn't expected to care about this much: how do you actually evaluate a candidate fairly? I pushed on how we judge people, especially freshmen, and argued to the board that one interview format rewards one kind of strength and quietly overlooks others.",
@@ -51,6 +56,7 @@ const NODES = [
   {
     era: "Ohio State",
     pin: "Learning Finance",
+    icon: FaChartLine,
     title: "Learning finance on purpose",
     body: [
       "Alongside that, I started actually studying the finance side instead of admiring it from a distance. As a business analyst at Buckeye PEVC, Ohio State's private equity and venture capital group, I've been learning how LBOs work, how PE and VC investors approach a decision differently, and what separates a business that's fixable from one that simply isn't going to work.",
@@ -60,6 +66,7 @@ const NODES = [
   {
     era: "Ongoing",
     pin: "Research & Robots",
+    icon: FaFlask,
     title: "Northwestern research, and two robots",
     body: [
       "Separately, I worked on a simulation tool for metal additive manufacturing through a research position at Northwestern. I'd rather point at it briefly than dwell on it. What it actually taught me was how to sit with a problem I didn't understand yet and take it apart piece by piece without pretending I already knew the answer.",
@@ -69,24 +76,31 @@ const NODES = [
 ];
 
 // Hand-placed points for a winding road through the viewBox, not a formula -
-// this is meant to look like a drawn path, not a plotted function.
+// this is meant to look like a drawn path, not a plotted function. Sized to
+// roughly match a typical two-paragraph content block's height instead of
+// the much taller span used at first, which left the road running on well
+// past the end of the text next to it.
 const POINTS = [
-  [100, 60],
-  [150, 190],
-  [70, 320],
-  [140, 450],
-  [60, 580],
-  [130, 710],
-  [90, 840],
+  [100, 40],
+  [150, 107],
+  [70, 173],
+  [140, 240],
+  [60, 307],
+  [130, 373],
+  [90, 440],
 ];
 const ROAD_D =
-  "M100,60 C108.3,81.7 155.0,146.7 150.0,190.0 C145.0,233.3 71.7,276.7 70.0,320.0 C68.3,363.3 141.7,406.7 140.0,450.0 C138.3,493.3 61.7,536.7 60.0,580.0 C58.3,623.3 125.0,666.7 130.0,710.0 C135.0,753.3 96.7,818.3 90.0,840.0";
+  "M100,40 C108.3,51.2 155.0,84.8 150.0,107.0 C145.0,129.2 71.7,150.8 70.0,173.0 C68.3,195.2 141.7,217.7 140.0,240.0 C138.3,262.3 61.7,284.8 60.0,307.0 C58.3,329.2 125.0,350.8 130.0,373.0 C135.0,395.2 96.7,428.8 90.0,440.0";
+// Exact cumulative arc-length of ROAD_D at each point, sampled from the real
+// bezier curve rather than guessed - the highlighted "traveled" segment
+// needs to end exactly at the active pin, not an approximation of it.
+const CUM_LENGTHS = [0, 86.1, 192.3, 292.6, 399.8, 498.7, 578.8];
 const VB_W = 200;
-const VB_H = 900;
+const VB_H = 480;
 
 function RoadMap({ active, onSelect }) {
   return (
-    <div className="relative hidden aspect-[200/900] w-full md:block">
+    <div className="relative hidden aspect-[200/480] w-full md:block">
       <svg viewBox={`0 0 ${VB_W} ${VB_H}`} className="absolute inset-0 h-full w-full overflow-visible">
         <path d={ROAD_D} stroke="var(--border)" strokeWidth="3" fill="none" strokeLinecap="round" />
         <path
@@ -95,7 +109,7 @@ function RoadMap({ active, onSelect }) {
           strokeWidth="3"
           fill="none"
           strokeLinecap="round"
-          strokeDasharray={`${(active / (POINTS.length - 1)) * 1400} 2000`}
+          strokeDasharray={`${CUM_LENGTHS[active]} 1000`}
           style={{ transition: "stroke-dasharray 0.4s ease" }}
         />
       </svg>
@@ -188,9 +202,14 @@ export function TimelineSection() {
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="mb-1 block font-mono text-[0.72rem] font-bold tracking-[0.08em] text-brand uppercase">
-                {node.era}
-              </span>
+              <div className="mb-2 flex items-center gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-brand">
+                  <node.icon className="h-4 w-4" />
+                </span>
+                <span className="font-mono text-[0.72rem] font-bold tracking-[0.08em] text-brand uppercase">
+                  {node.era}
+                </span>
+              </div>
               <h3 className="mb-4 font-display text-[1.3rem] font-bold text-foreground">{node.title}</h3>
               <div className="flex flex-col gap-4 text-[0.98rem] leading-relaxed text-muted-foreground">
                 {node.body.map((p, i) => (

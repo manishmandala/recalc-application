@@ -53,6 +53,33 @@ export function HeroSection() {
             Email
           </a>
         </div>
+
+        <div className="mt-10 flex flex-wrap justify-center gap-8 md:justify-start">
+          <a href="#timeline" className="group flex flex-col">
+            <span className="font-display text-[1.6rem] font-extrabold text-brand transition-transform group-hover:-translate-y-0.5">
+              7
+            </span>
+            <span className="font-mono text-[0.68rem] tracking-[0.06em] text-muted-foreground uppercase">
+              stops on the map
+            </span>
+          </a>
+          <a href="#local-business" className="group flex flex-col">
+            <span className="font-display text-[1.6rem] font-extrabold text-brand transition-transform group-hover:-translate-y-0.5">
+              2
+            </span>
+            <span className="font-mono text-[0.68rem] tracking-[0.06em] text-muted-foreground uppercase">
+              businesses this summer
+            </span>
+          </a>
+          <a href="#question" className="group flex flex-col">
+            <span className="font-display text-[1.6rem] font-extrabold text-brand transition-transform group-hover:-translate-y-0.5">
+              1
+            </span>
+            <span className="font-mono text-[0.68rem] tracking-[0.06em] text-muted-foreground uppercase">
+              question I'm chasing
+            </span>
+          </a>
+        </div>
       </div>
 
       <HeroTopo />

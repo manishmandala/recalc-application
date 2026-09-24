@@ -1,6 +1,34 @@
-import { FaUtensils, FaTooth } from "react-icons/fa6";
+import { FaUtensils, FaTooth, FaCheck } from "react-icons/fa6";
 import { Reveal } from "@/components/reveal";
 import { TiltCard } from "@/components/tilt-card";
+
+const BUSINESSES = [
+  {
+    icon: FaTooth,
+    name: "An Orthodontics Practice",
+    kind: "Established",
+    intro: "Owner-run, steady patient base, looking for ways to stand out in a crowded neighborhood.",
+    worked: [
+      "A TikTok marketing push",
+      "A promotion sending part of its proceeds to a cause the patient picked",
+      "Software to speed up day-to-day operations",
+      "A website with a built-in chatbot",
+    ],
+    takeaway: "The donation promotion got a genuinely warm response. I can't point to a number, but I can tell you people noticed.",
+  },
+  {
+    icon: FaUtensils,
+    name: "A Neighborhood Steakhouse",
+    kind: "New",
+    intro: "Still finding its own identity, with an evening crowd that hadn't settled into a pattern yet.",
+    worked: [
+      "A menu review for items dragging on the kitchen",
+      "Early customer feedback, watching for patterns before they hardened into habits",
+      "Ideas for using the space differently by hour, including a bar night with its own atmosphere",
+    ],
+    takeaway: "I didn't run the restaurant. I tried to notice what it was already telling us, if anyone bothered to listen.",
+  },
+];
 
 export function LocalBusinessSection() {
   return (
@@ -11,48 +39,48 @@ export function LocalBusinessSection() {
 
       <Reveal>
         <p className="mb-12 max-w-[680px] text-[1rem] leading-relaxed text-foreground/90">
-          Two very different businesses let me in: a neighborhood steakhouse still finding its footing, and
-          an established orthodontics practice. I worked directly with both owners. With both, the method
-          was the same even when the businesses weren't. I sat with staff to hear where the friction
-          actually was, not where I assumed it would be, and I gathered feedback from customers about what
-          kept them coming back and what didn't. Listening carefully turned out to be the transferable
-          skill. What to do with what I heard wasn't.
+          Two very different businesses let me in, and I worked directly with both owners. With both, the
+          method was the same even when the businesses weren't: sit with staff to hear where the friction
+          actually was, not where I assumed it would be, and gather customer feedback on what kept people
+          coming back. Listening carefully turned out to be the transferable skill. What to do with what I
+          heard wasn't.
         </p>
       </Reveal>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <Reveal delay={0.05}>
-          <TiltCard className="flex h-full flex-col rounded-lg border border-border bg-card p-7 shadow-[0_1px_3px_rgba(0,0,0,0.4)] transition-[border-color,box-shadow] duration-200 hover:border-brand hover:shadow-[0_10px_28px_rgba(0,0,0,0.5)]">
-            <FaTooth className="mb-4 h-6 w-6 text-brand" />
-            <h3 className="mb-3 font-display text-[1.15rem] font-bold text-foreground">
-              An Orthodontics Practice
-            </h3>
-            <p className="text-[0.92rem] leading-relaxed text-muted-foreground">
-              I worked on a handful of concrete ideas here: a TikTok marketing push, a promotion that sent
-              part of its proceeds to a cause the customer picked, software meant to speed up day-to-day
-              operations, and a website with a chatbot built in. The donation promotion got a genuinely warm
-              response from patients. I can't tell you it moved a number, because I don't have one to point
-              to. I can tell you people noticed.
-            </p>
-          </TiltCard>
-        </Reveal>
+        {BUSINESSES.map((biz, i) => {
+          const Icon = biz.icon;
+          return (
+            <Reveal key={biz.name} delay={0.05 + i * 0.05}>
+              <TiltCard className="flex h-full flex-col rounded-lg border border-border bg-card p-7 shadow-[0_1px_3px_rgba(0,0,0,0.4)] transition-[border-color,box-shadow] duration-200 hover:border-brand hover:shadow-[0_10px_28px_rgba(0,0,0,0.5)]">
+                <div className="mb-4 flex items-start justify-between">
+                  <Icon className="h-6 w-6 text-brand" />
+                  <span className="rounded-full border border-border px-2.5 py-0.5 font-mono text-[0.65rem] font-semibold tracking-[0.04em] text-muted-foreground uppercase">
+                    {biz.kind}
+                  </span>
+                </div>
+                <h3 className="mb-1.5 font-display text-[1.15rem] font-bold text-foreground">{biz.name}</h3>
+                <p className="mb-4 text-[0.88rem] text-muted-foreground/80">{biz.intro}</p>
 
-        <Reveal delay={0.1}>
-          <TiltCard className="flex h-full flex-col rounded-lg border border-border bg-card p-7 shadow-[0_1px_3px_rgba(0,0,0,0.4)] transition-[border-color,box-shadow] duration-200 hover:border-brand hover:shadow-[0_10px_28px_rgba(0,0,0,0.5)]">
-            <FaUtensils className="mb-4 h-6 w-6 text-brand" />
-            <h3 className="mb-3 font-display text-[1.15rem] font-bold text-foreground">
-              A Neighborhood Steakhouse
-            </h3>
-            <p className="text-[0.92rem] leading-relaxed text-muted-foreground">
-              Still new enough to be figuring out its own identity, this one had me going through the menu
-              looking for items that seemed to be dragging on the kitchen, collecting early customer
-              feedback to catch patterns before they hardened into habits, and working on ways to use the
-              space differently depending on the hour, including a bar night built around a different kind
-              of evening altogether. I didn't run the restaurant. I tried to notice what the restaurant was
-              already telling us, if anyone bothered to listen.
-            </p>
-          </TiltCard>
-        </Reveal>
+                <span className="mb-2 font-mono text-[0.68rem] font-bold tracking-[0.06em] text-brand uppercase">
+                  What I worked on
+                </span>
+                <ul className="mb-5 flex flex-col gap-2">
+                  {biz.worked.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-[0.88rem] text-muted-foreground">
+                      <FaCheck className="mt-1 h-2.5 w-2.5 shrink-0 text-brand" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="mt-auto border-t border-border pt-4 text-[0.85rem] leading-relaxed text-muted-foreground/90 italic">
+                  {biz.takeaway}
+                </p>
+              </TiltCard>
+            </Reveal>
+          );
+        })}
       </div>
     </section>
   );
