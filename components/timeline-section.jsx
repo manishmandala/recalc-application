@@ -49,8 +49,8 @@ const NODES = [
     icon: FaPeopleGroup,
     title: "Phi Chi Theta",
     body: [
-      "In college I joined Phi Chi Theta, a professional business fraternity, and ended up on the recruitment team. That put me in the room for a question I hadn't expected to care about this much: how do you actually evaluate a candidate fairly? I pushed on how we judge people, especially freshmen, and argued to the board that one interview format rewards one kind of strength and quietly overlooks others.",
-      "Some of that made it to a chapter vote. Not all of it passed. But I'd rather argue for a better process and lose some rounds than stay quiet about one I think is flawed.",
+      "In college I joined Phi Chi Theta, a professional business fraternity, mostly because I wanted to be around people who took business as seriously as I did, which wasn't easy to find in a schedule full of engineering classes. What I actually got out of it wasn't a class or a workshop. It was people: upperclassmen a few interviews ahead of me, professionals willing to tell you what actually mattered instead of what sounded good in a meeting. Being in a room where you're not the only one asking a question turns out to speed up how fast you figure things out.",
+      "That's part of why Recalc matters to me beyond the curriculum itself. A cohort full of people from genuinely different backgrounds who all happen to be sharp about breaking down a hard problem is the same thing that made Phi Chi Theta worth my time in the first place. I'd rather learn this next layer of finance surrounded by people like that than alone with a textbook.",
     ],
   },
   {
