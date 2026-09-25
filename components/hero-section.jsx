@@ -10,17 +10,9 @@ export function HeroSection() {
         <p className="mb-4 font-mono text-[0.85rem] font-semibold tracking-[0.06em] text-brand">
           RECALC FINANCE ACCELERATOR &middot; FALL 2026
         </p>
-        <div className="mb-5 flex items-center justify-center gap-[18px] md:justify-start">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/assets/headshot.png"
-            alt="Manish Mandala"
-            className="h-14 w-14 shrink-0 rounded-full border border-border object-cover md:h-[76px] md:w-[76px]"
-          />
-          <h1 className="font-display text-[clamp(2.4rem,6vw,3.6rem)] font-extrabold leading-[1.1] tracking-[-0.02em]">
-            Manish Mandala
-          </h1>
-        </div>
+        <h1 className="mb-5 font-display text-[clamp(2.4rem,6vw,3.6rem)] font-extrabold leading-[1.1] tracking-[-0.02em]">
+          Manish Mandala
+        </h1>
 
         <p className="mx-auto mb-3 max-w-[540px] font-display text-[1.12rem] font-medium leading-snug text-muted-foreground md:mx-0">
           Mechanical engineering student at Ohio State. I like knowing why something works, and lately
@@ -57,7 +49,7 @@ export function HeroSection() {
         <div className="mt-10 flex flex-wrap justify-center gap-8 md:justify-start">
           <a href="#timeline" className="group flex flex-col">
             <span className="font-display text-[1.6rem] font-extrabold text-brand transition-transform group-hover:-translate-y-0.5">
-              7
+              8
             </span>
             <span className="font-mono text-[0.68rem] tracking-[0.06em] text-muted-foreground uppercase">
               stops on the map

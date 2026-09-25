@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaLocationDot, FaBolt, FaRobot, FaBriefcase, FaCompass, FaPeopleGroup, FaChartLine, FaFlask } from "react-icons/fa6";
+import { FaLocationDot, FaBolt, FaRobot, FaBriefcase, FaCompass, FaPeopleGroup, FaChartLine, FaFlask, FaSeedling } from "react-icons/fa6";
 import { Reveal } from "@/components/reveal";
 
 const NODES = [
@@ -73,6 +73,16 @@ const NODES = [
       "The building never really stopped, either: a vision-guided tracking system, and now an autonomous drone that's still very much in progress. I'd rather say that plainly than describe it as something it isn't yet.",
     ],
   },
+  {
+    era: "Right Now",
+    pin: "Where This Leads",
+    icon: FaSeedling,
+    title: "Tying it together",
+    body: [
+      "Put the fan remotes, the robots, the businesses, and the finance clubs next to each other and they stop looking like a scattered resume. They're the same instinct pointed at different material: take something apart, find what's actually driving it, and see if there's a better way to put it back together.",
+      "Engineering gave me the discipline. The local businesses gave me the practice. PEVC and Scarlet gave me the vocabulary. What I don't have yet is the rigor to make that instinct hold up under real numbers, which is exactly the gap Recalc is built to close.",
+    ],
+  },
 ];
 
 // Hand-placed points for a winding road through the viewBox, not a formula -
@@ -88,19 +98,20 @@ const POINTS = [
   [60, 307],
   [130, 373],
   [90, 440],
+  [145, 505],
 ];
 const ROAD_D =
-  "M100,40 C108.3,51.2 155.0,84.8 150.0,107.0 C145.0,129.2 71.7,150.8 70.0,173.0 C68.3,195.2 141.7,217.7 140.0,240.0 C138.3,262.3 61.7,284.8 60.0,307.0 C58.3,329.2 125.0,350.8 130.0,373.0 C135.0,395.2 96.7,428.8 90.0,440.0";
+  "M100,40 C108.3,51.2 155.0,84.8 150.0,107.0 C145.0,129.2 71.7,150.8 70.0,173.0 C68.3,195.2 141.7,217.7 140.0,240.0 C138.3,262.3 61.7,284.8 60.0,307.0 C58.3,329.2 125.0,350.8 130.0,373.0 C135.0,395.2 87.5,418.0 90.0,440.0 C92.5,462.0 135.8,494.2 145.0,505.0";
 // Exact cumulative arc-length of ROAD_D at each point, sampled from the real
 // bezier curve rather than guessed - the highlighted "traveled" segment
 // needs to end exactly at the active pin, not an approximation of it.
-const CUM_LENGTHS = [0, 86.1, 192.3, 292.6, 399.8, 498.7, 578.8];
+const CUM_LENGTHS = [0, 86.1, 192.3, 292.6, 399.8, 498.7, 579.5, 665.8];
 const VB_W = 200;
-const VB_H = 480;
+const VB_H = 545;
 
 function RoadMap({ active, onSelect }) {
   return (
-    <div className="relative hidden aspect-[200/480] w-full md:block">
+    <div className="relative hidden aspect-[200/545] w-full md:block">
       <svg viewBox={`0 0 ${VB_W} ${VB_H}`} className="absolute inset-0 h-full w-full overflow-visible">
         <path d={ROAD_D} stroke="var(--border)" strokeWidth="3" fill="none" strokeLinecap="round" />
         <path
@@ -221,7 +232,16 @@ export function TimelineSection() {
         </div>
 
         <div className="md:order-2">
-          <RoadMap active={active} onSelect={setActive} />
+          <div
+            className="hidden rounded-xl border border-border bg-card/50 p-5 md:block"
+            style={{
+              backgroundImage:
+                "radial-gradient(var(--border) 1px, transparent 1px), radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--brand) 10%, transparent), transparent 60%)",
+              backgroundSize: "18px 18px, 100% 100%",
+            }}
+          >
+            <RoadMap active={active} onSelect={setActive} />
+          </div>
         </div>
       </div>
     </section>
