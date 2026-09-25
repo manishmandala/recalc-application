@@ -14,7 +14,7 @@ export function ContactSection() {
           </p>
           <a
             href="mailto:manish.mandala07@gmail.com"
-            className="inline-block rounded-lg bg-brand px-8 py-3.5 text-[1rem] font-semibold text-[#0d1a17] transition-colors hover:bg-brand-hover"
+            className="inline-block rounded-lg bg-brand px-8 py-3.5 text-[1rem] font-semibold text-[#2a1608] transition-colors hover:bg-brand-hover"
           >
             Say Hello
           </a>

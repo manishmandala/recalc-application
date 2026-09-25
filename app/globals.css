@@ -25,17 +25,19 @@
 
 :root {
   color-scheme: dark;
-  --background: #14171a;
-  --foreground: #e8ebea;
-  --card: #1c2023;
-  --card-foreground: #e8ebea;
-  --muted: #1c2023;
-  --muted-foreground: #9aa3a1;
-  --border: #2a2f32;
+  --background: #171129;
+  --foreground: #f3eee8;
+  --card: #1e1836;
+  --card-foreground: #f3eee8;
+  --muted: #1e1836;
+  --muted-foreground: #a89bc4;
+  --border: #322a52;
   --radius: 0.75rem;
 
-  --brand: #4fb8a6;
-  --brand-hover: #6fd0bf;
+  --brand: #f5a742;
+  --brand-hover: #ffc06b;
+  --sky-top: #211a3d;
+  --sky-bottom: #3a2a4f;
 }
 
 @layer base {

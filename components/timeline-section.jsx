@@ -1,8 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaLocationDot, FaBolt, FaRobot, FaBriefcase, FaCompass, FaPeopleGroup, FaChartLine, FaFlask, FaSeedling } from "react-icons/fa6";
+import {
+  FaLocationDot,
+  FaCarSide,
+  FaBolt,
+  FaRobot,
+  FaBriefcase,
+  FaCompass,
+  FaPeopleGroup,
+  FaChartLine,
+  FaFlask,
+  FaSeedling,
+} from "react-icons/fa6";
 import { Reveal } from "@/components/reveal";
 
 const NODES = [
@@ -109,20 +120,49 @@ const CUM_LENGTHS = [0, 86.1, 192.3, 292.6, 399.8, 498.7, 579.5, 665.8];
 const VB_W = 200;
 const VB_H = 545;
 
+function easeInOutCubic(t) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
+// The car doesn't jump between stops - it's driven along the real path with
+// the browser's own getPointAtLength, animated over time, so clicking a
+// distant stop (or holding an arrow key) visibly travels the road instead
+// of teleporting.
 function RoadMap({ active, onSelect }) {
+  const pathRef = useRef(null);
+  const rafRef = useRef(null);
+  const progressRef = useRef(0);
+  const [litLength, setLitLength] = useState(0);
+  const [carPoint, setCarPoint] = useState({ x: POINTS[0][0], y: POINTS[0][1] });
+
+  useEffect(() => {
+    const path = pathRef.current;
+    if (!path) return;
+    const target = CUM_LENGTHS[active];
+    const start = progressRef.current;
+    const startTime = performance.now();
+    const duration = 450;
+    cancelAnimationFrame(rafRef.current);
+
+    function frame(now) {
+      const raw = Math.min(1, (now - startTime) / duration);
+      const eased = easeInOutCubic(raw);
+      const current = start + (target - start) * eased;
+      progressRef.current = current;
+      setLitLength(current);
+      const pt = path.getPointAtLength(current);
+      setCarPoint({ x: pt.x, y: pt.y });
+      if (raw < 1) rafRef.current = requestAnimationFrame(frame);
+    }
+    rafRef.current = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [active]);
+
   return (
     <div className="relative hidden aspect-[200/545] w-full md:block">
       <svg viewBox={`0 0 ${VB_W} ${VB_H}`} className="absolute inset-0 h-full w-full overflow-visible">
-        <path d={ROAD_D} stroke="var(--border)" strokeWidth="3" fill="none" strokeLinecap="round" />
-        <path
-          d={ROAD_D}
-          stroke="var(--brand)"
-          strokeWidth="3"
-          fill="none"
-          strokeLinecap="round"
-          strokeDasharray={`${CUM_LENGTHS[active]} 1000`}
-          style={{ transition: "stroke-dasharray 0.4s ease" }}
-        />
+        <path ref={pathRef} d={ROAD_D} stroke="var(--border)" strokeWidth="3" fill="none" strokeLinecap="round" />
+        <path d={ROAD_D} stroke="var(--brand)" strokeWidth="3" fill="none" strokeLinecap="round" strokeDasharray={`${litLength} 1000`} />
       </svg>
 
       {POINTS.map(([x, y], i) => {
@@ -144,8 +184,7 @@ function RoadMap({ active, onSelect }) {
             }}
           >
             <FaLocationDot
-              className={`h-6 w-6 shrink-0 transition-all ${isActive ? "text-brand" : "text-muted-foreground"}`}
-              style={{ filter: isActive ? "drop-shadow(0 0 6px var(--brand))" : "none" }}
+              className={`h-5 w-5 shrink-0 transition-all ${isActive ? "text-brand/40" : "text-muted-foreground"}`}
             />
             <span
               className={`whitespace-nowrap font-mono text-[0.68rem] font-bold tracking-[0.04em] transition-colors ${
@@ -157,6 +196,14 @@ function RoadMap({ active, onSelect }) {
           </button>
         );
       })}
+
+      {/* the car itself, driven along the path by carPoint rather than snapped to a stop */}
+      <div
+        className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2"
+        style={{ left: `${(carPoint.x / VB_W) * 100}%`, top: `${(carPoint.y / VB_H) * 100}%` }}
+      >
+        <FaCarSide className="h-6 w-6 text-brand" style={{ filter: "drop-shadow(0 0 6px var(--brand))" }} />
+      </div>
     </div>
   );
 }
@@ -175,7 +222,7 @@ function MobileStops({ active, onSelect }) {
               : "border-border text-muted-foreground"
           }`}
         >
-          <FaLocationDot className="h-3 w-3" />
+          {active === i ? <FaCarSide className="h-3 w-3" /> : <FaLocationDot className="h-3 w-3" />}
           {n.pin}
         </button>
       ))}
@@ -187,6 +234,20 @@ export function TimelineSection() {
   const [active, setActive] = useState(0);
   const node = NODES[active];
 
+  useEffect(() => {
+    function handleKey(e) {
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        e.preventDefault();
+        setActive((a) => Math.min(a + 1, NODES.length - 1));
+      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        setActive((a) => Math.max(a - 1, 0));
+      }
+    }
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, []);
+
   return (
     <section id="timeline" className="container mx-auto max-w-[1080px] border-t border-border px-6 py-24">
       <Reveal as="h2" className="mb-4 flex items-baseline gap-2.5 font-display text-[clamp(1.6rem,4vw,2rem)] font-extrabold tracking-[-0.01em]">
@@ -194,8 +255,8 @@ export function TimelineSection() {
       </Reveal>
       <Reveal>
         <p className="mb-10 max-w-[560px] text-[0.95rem] text-muted-foreground">
-          Click a stop on the map to read more. The short version: the same curiosity kept showing up
-          wearing different clothes.
+          Click a stop on the map, or use the arrow keys to drive through it yourself. The short version:
+          the same curiosity kept showing up wearing different clothes.
         </p>
       </Reveal>
 
@@ -233,13 +294,17 @@ export function TimelineSection() {
 
         <div className="md:order-2">
           <div
-            className="hidden rounded-xl border border-border bg-card/50 p-5 md:block"
+            className="relative hidden overflow-hidden rounded-xl border border-border bg-card/50 p-5 md:block"
             style={{
               backgroundImage:
-                "radial-gradient(var(--border) 1px, transparent 1px), radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--brand) 10%, transparent), transparent 60%)",
+                "radial-gradient(var(--border) 1px, transparent 1px), linear-gradient(180deg, var(--sky-top), var(--sky-bottom))",
               backgroundSize: "18px 18px, 100% 100%",
             }}
           >
+            <div
+              className="pointer-events-none absolute top-4 right-4 h-10 w-10 rounded-full bg-brand"
+              style={{ boxShadow: "0 0 34px 10px color-mix(in srgb, var(--brand) 55%, transparent)" }}
+            />
             <RoadMap active={active} onSelect={setActive} />
           </div>
         </div>
