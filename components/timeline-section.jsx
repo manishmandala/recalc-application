@@ -96,29 +96,29 @@ const NODES = [
   },
 ];
 
-// Hand-placed points for a winding road through the viewBox, not a formula -
-// this is meant to look like a drawn path, not a plotted function. Sized to
-// roughly match a typical two-paragraph content block's height instead of
-// the much taller span used at first, which left the road running on well
-// past the end of the text next to it.
+// Hand-placed points for a road running left to right through the scene, not
+// a formula - this is meant to look like a drawn path. Once real photos
+// exist per stop, each pin can carry a thumbnail instead of just an icon
+// without touching this geometry.
 const POINTS = [
-  [100, 40],
-  [150, 107],
-  [70, 173],
-  [140, 240],
-  [60, 307],
-  [130, 373],
-  [90, 440],
-  [145, 505],
+  [60, 330],
+  [214, 300],
+  [369, 355],
+  [523, 310],
+  [677, 350],
+  [831, 305],
+  [986, 355],
+  [1140, 320],
 ];
 const ROAD_D =
-  "M100,40 C108.3,51.2 155.0,84.8 150.0,107.0 C145.0,129.2 71.7,150.8 70.0,173.0 C68.3,195.2 141.7,217.7 140.0,240.0 C138.3,262.3 61.7,284.8 60.0,307.0 C58.3,329.2 125.0,350.8 130.0,373.0 C135.0,395.2 87.5,418.0 90.0,440.0 C92.5,462.0 135.8,494.2 145.0,505.0";
+  "M60,330 C85.7,325.0 162.5,295.8 214.0,300.0 C265.5,304.2 317.5,353.3 369.0,355.0 C420.5,356.7 471.7,310.8 523.0,310.0 C574.3,309.2 625.7,350.8 677.0,350.0 C728.3,349.2 779.5,304.2 831.0,305.0 C882.5,305.8 934.5,352.5 986.0,355.0 C1037.5,357.5 1114.3,325.8 1140.0,320.0";
 // Exact cumulative arc-length of ROAD_D at each point, sampled from the real
 // bezier curve rather than guessed - the highlighted "traveled" segment
 // needs to end exactly at the active pin, not an approximation of it.
-const CUM_LENGTHS = [0, 86.1, 192.3, 292.6, 399.8, 498.7, 579.5, 665.8];
-const VB_W = 200;
-const VB_H = 545;
+const CUM_LENGTHS = [0, 157.6, 323.3, 485.0, 645.2, 806.8, 970.8, 1129.5];
+const VB_W = 1200;
+const VB_H = 420;
+const HILLS_D = "M0,250 Q120,200 300,235 T600,225 T900,240 T1200,215 L1200,420 L0,420 Z";
 
 function easeInOutCubic(t) {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -141,7 +141,7 @@ function RoadMap({ active, onSelect }) {
     const target = CUM_LENGTHS[active];
     const start = progressRef.current;
     const startTime = performance.now();
-    const duration = 450;
+    const duration = 500;
     cancelAnimationFrame(rafRef.current);
 
     function frame(now) {
@@ -159,50 +159,88 @@ function RoadMap({ active, onSelect }) {
   }, [active]);
 
   return (
-    <div className="relative hidden aspect-[200/545] w-full md:block">
-      <svg viewBox={`0 0 ${VB_W} ${VB_H}`} className="absolute inset-0 h-full w-full overflow-visible">
-        <path ref={pathRef} d={ROAD_D} stroke="var(--border)" strokeWidth="3" fill="none" strokeLinecap="round" />
-        <path d={ROAD_D} stroke="var(--brand)" strokeWidth="3" fill="none" strokeLinecap="round" strokeDasharray={`${litLength} 1000`} />
+    <div className="relative hidden aspect-[1200/420] w-full overflow-hidden rounded-xl border border-border md:block">
+      <svg viewBox={`0 0 ${VB_W} ${VB_H}`} className="absolute inset-0 h-full w-full">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="var(--sky-top)" />
+            <stop offset="100%" stopColor="var(--sky-bottom)" />
+          </linearGradient>
+          <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#4a7a4e" />
+            <stop offset="100%" stopColor="#2f5533" />
+          </linearGradient>
+        </defs>
+
+        {/* sky */}
+        <rect x="0" y="0" width={VB_W} height={VB_H} fill="url(#sky)" />
+
+        {/* clouds */}
+        <g fill="#f3eee8" opacity="0.15">
+          <ellipse cx="220" cy="80" rx="55" ry="18" />
+          <ellipse cx="270" cy="70" rx="40" ry="16" />
+          <ellipse cx="640" cy="110" rx="45" ry="15" />
+          <ellipse cx="680" cy="100" rx="32" ry="13" />
+        </g>
+
+        {/* sun */}
+        <circle cx="1050" cy="90" r="42" fill="var(--brand)" opacity="0.9" />
+        <circle cx="1050" cy="90" r="70" fill="var(--brand)" opacity="0.18" />
+
+        {/* hills, sitting behind the grass band for a little depth */}
+        <path d={HILLS_D} fill="#264227" opacity="0.85" />
+
+        {/* grass */}
+        <rect x="0" y="260" width={VB_W} height={VB_H - 260} fill="url(#grass)" />
+
+        {/* the road itself */}
+        <path d={ROAD_D} stroke="#8a8474" strokeWidth="16" fill="none" strokeLinecap="round" />
+        <path ref={pathRef} d={ROAD_D} stroke="#c9c3b0" strokeWidth="2" strokeDasharray="10 10" fill="none" strokeLinecap="round" />
+        <path d={ROAD_D} stroke="var(--brand)" strokeWidth="3" fill="none" strokeLinecap="round" strokeDasharray={`${litLength} 2000`} />
       </svg>
 
       {POINTS.map(([x, y], i) => {
         const leftPct = (x / VB_W) * 100;
         const topPct = (y / VB_H) * 100;
-        const labelOnLeft = x >= 100;
         const isActive = active === i;
+        // Edge stops can't have their label centered on the pin without it
+        // spilling past the card's overflow-hidden edge (verified - the last
+        // one was visibly clipped). Anchor those away from the boundary
+        // instead; the dot underneath stays exactly on the point either way.
+        const isFirst = i === 0;
+        const isLast = i === POINTS.length - 1;
+        const labelClass = isFirst ? "left-0" : isLast ? "right-0" : "left-1/2 -translate-x-1/2";
         return (
           <button
             key={i}
             type="button"
             onClick={() => onSelect(i)}
             aria-label={`${NODES[i].era}: ${NODES[i].title}`}
-            className="absolute flex -translate-x-1/2 -translate-y-full items-center gap-1.5"
-            style={{
-              left: `${leftPct}%`,
-              top: `${topPct}%`,
-              flexDirection: labelOnLeft ? "row-reverse" : "row",
-            }}
+            className="absolute"
+            style={{ left: `${leftPct}%`, top: `${topPct}%` }}
           >
-            <FaLocationDot
-              className={`h-5 w-5 shrink-0 transition-all ${isActive ? "text-brand/40" : "text-muted-foreground"}`}
-            />
             <span
-              className={`whitespace-nowrap font-mono text-[0.68rem] font-bold tracking-[0.04em] transition-colors ${
-                isActive ? "text-brand" : "text-muted-foreground"
-              } ${labelOnLeft ? "text-right" : "text-left"}`}
+              className={`absolute bottom-[22px] ${labelClass} whitespace-nowrap rounded-full border px-2 py-0.5 font-mono text-[0.65rem] font-bold tracking-[0.03em] backdrop-blur-sm transition-colors ${
+                isActive
+                  ? "border-brand bg-brand/20 text-brand"
+                  : "border-white/10 bg-black/20 text-muted-foreground"
+              }`}
             >
               {NODES[i].pin}
             </span>
+            <FaLocationDot
+              className={`absolute -translate-x-1/2 -translate-y-full h-4 w-4 shrink-0 ${isActive ? "text-brand" : "text-white/70"}`}
+            />
           </button>
         );
       })}
 
       {/* the car itself, driven along the path by carPoint rather than snapped to a stop */}
       <div
-        className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2"
+        className="pointer-events-none absolute -translate-x-1/2 -translate-y-[85%]"
         style={{ left: `${(carPoint.x / VB_W) * 100}%`, top: `${(carPoint.y / VB_H) * 100}%` }}
       >
-        <FaCarSide className="h-6 w-6 text-brand" style={{ filter: "drop-shadow(0 0 6px var(--brand))" }} />
+        <FaCarSide className="h-7 w-7 text-brand" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.5))" }} />
       </div>
     </div>
   );
@@ -236,10 +274,10 @@ export function TimelineSection() {
 
   useEffect(() => {
     function handleKey(e) {
-      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
         e.preventDefault();
         setActive((a) => Math.min(a + 1, NODES.length - 1));
-      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
         e.preventDefault();
         setActive((a) => Math.max(a - 1, 0));
       }
@@ -254,8 +292,8 @@ export function TimelineSection() {
         <span className="font-mono text-[1.1rem] font-semibold text-brand">01.</span> How I Got Here
       </Reveal>
       <Reveal>
-        <p className="mb-10 max-w-[560px] text-[0.95rem] text-muted-foreground">
-          Click a stop on the map, or use the arrow keys to drive through it yourself. The short version:
+        <p className="mb-8 max-w-[620px] text-[0.95rem] text-muted-foreground">
+          Click a stop on the road, or use the arrow keys to drive through it yourself. The short version:
           the same curiosity kept showing up wearing different clothes.
         </p>
       </Reveal>
@@ -264,50 +302,35 @@ export function TimelineSection() {
         <MobileStops active={active} onSelect={setActive} />
       </div>
 
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_240px] md:gap-8">
-        <div className="min-h-[280px] md:order-1">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="mb-2 flex items-center gap-3">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-brand">
-                  <node.icon className="h-4 w-4" />
-                </span>
-                <span className="font-mono text-[0.72rem] font-bold tracking-[0.08em] text-brand uppercase">
-                  {node.era}
-                </span>
-              </div>
-              <h3 className="mb-4 font-display text-[1.3rem] font-bold text-foreground">{node.title}</h3>
-              <div className="flex flex-col gap-4 text-[0.98rem] leading-relaxed text-muted-foreground">
-                {node.body.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+      <Reveal>
+        <RoadMap active={active} onSelect={setActive} />
+      </Reveal>
 
-        <div className="md:order-2">
-          <div
-            className="relative hidden overflow-hidden rounded-xl border border-border bg-card/50 p-5 md:block"
-            style={{
-              backgroundImage:
-                "radial-gradient(var(--border) 1px, transparent 1px), linear-gradient(180deg, var(--sky-top), var(--sky-bottom))",
-              backgroundSize: "18px 18px, 100% 100%",
-            }}
+      <div className="mt-10 min-h-[220px] max-w-[680px]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div
-              className="pointer-events-none absolute top-4 right-4 h-10 w-10 rounded-full bg-brand"
-              style={{ boxShadow: "0 0 34px 10px color-mix(in srgb, var(--brand) 55%, transparent)" }}
-            />
-            <RoadMap active={active} onSelect={setActive} />
-          </div>
-        </div>
+            <div className="mb-2 flex items-center gap-3">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-brand">
+                <node.icon className="h-4 w-4" />
+              </span>
+              <span className="font-mono text-[0.72rem] font-bold tracking-[0.08em] text-brand uppercase">
+                {node.era}
+              </span>
+            </div>
+            <h3 className="mb-4 font-display text-[1.3rem] font-bold text-foreground">{node.title}</h3>
+            <div className="flex flex-col gap-4 text-[0.98rem] leading-relaxed text-muted-foreground">
+              {node.body.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
