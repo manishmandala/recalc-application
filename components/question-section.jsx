@@ -50,9 +50,8 @@ export function QuestionSection() {
         <p className="mb-6 text-[1.05rem] leading-relaxed text-foreground/90">
           What I don't have yet are the tools to test whether a business is actually worth what someone says
           it's worth. Recalc's Finance Accelerator teaches accounting fundamentals, business analysis, and
-          LBO modeling: the mechanics I've been circling without ever fully picking up. The curiosity and
-          the qualitative half of the question are the parts I already know how to do. I want the other half
-          too.
+          LBO modeling: the mechanics I've been circling without ever fully picking up. The qualitative half
+          of this question is the half I've begun to learn. I want to start on the other half too.
         </p>
       </Reveal>
 
