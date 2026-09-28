@@ -42,7 +42,7 @@ export function WhyThingsWorkSection() {
       <Reveal>
         <p className="mb-10 max-w-[620px] text-[1rem] leading-relaxed text-muted-foreground">
           The habit is always the same: find out <span className="text-foreground">why</span> something, or
-          someone, behaves the way it does. Only the subject has changed. Pick one.
+          someone, behaves the way it does. Only the subject has changed. Click each one below to see how.
         </p>
       </Reveal>
 
@@ -57,7 +57,7 @@ export function WhyThingsWorkSection() {
                 type="button"
                 onClick={() => setActive(i)}
                 aria-pressed={on}
-                className={`group relative flex items-center gap-4 rounded-xl border p-5 text-left transition-all duration-200 ${
+                className={`group relative flex cursor-pointer items-center gap-4 rounded-xl border p-5 text-left transition-all duration-200 ${
                   on
                     ? "border-brand bg-brand/10 shadow-[0_10px_28px_rgba(0,0,0,0.35)]"
                     : "border-border bg-card hover:-translate-y-0.5 hover:border-brand/50"
@@ -75,7 +75,20 @@ export function WhyThingsWorkSection() {
                     0{i + 1} &middot; Why do
                   </span>
                   <span className="block font-display text-[1.2rem] font-bold text-foreground">{l.label} work?</span>
+                  <span
+                    className={`mt-1 flex items-center gap-1.5 font-mono text-[0.62rem] font-semibold tracking-[0.06em] uppercase ${
+                      on ? "text-brand" : "text-muted-foreground group-hover:text-brand"
+                    }`}
+                  >
+                    {on ? "Showing below ↓" : "Click to open →"}
+                  </span>
                 </span>
+                {!on && (
+                  <span className="absolute top-3 right-3 flex h-2.5 w-2.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand" />
+                  </span>
+                )}
               </button>
             );
           })}
