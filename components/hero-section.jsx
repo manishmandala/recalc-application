@@ -55,12 +55,12 @@ export function HeroSection() {
               stops on the map
             </span>
           </a>
-          <a href="#local-business" className="group flex flex-col">
+          <a href="#why-things-work" className="group flex flex-col">
             <span className="font-display text-[1.6rem] font-extrabold text-brand transition-transform group-hover:-translate-y-0.5">
-              2
+              3
             </span>
             <span className="font-mono text-[0.68rem] tracking-[0.06em] text-muted-foreground uppercase">
-              businesses this summer
+              ways of asking why
             </span>
           </a>
           <a href="#question" className="group flex flex-col">

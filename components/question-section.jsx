@@ -20,8 +20,8 @@ export function QuestionSection() {
         <p className="mb-6 text-[1.05rem] leading-relaxed text-foreground/90">
           Not the answer you'd give to sound sharp in an interview, but the real one, the kind you only get
           to by listening long enough and testing enough small assumptions that you eventually run out of
-          the wrong ones. I don't have that answer yet. I have a habit of chasing it anyway, in robots and
-          restaurants and orthodontics offices and everywhere else it happens to be hiding.
+          the wrong ones. I don't have that answer yet. I have a habit of chasing it anyway, in robots, in
+          small businesses, in the way people make decisions, and everywhere else it happens to be hiding.
         </p>
       </Reveal>
 

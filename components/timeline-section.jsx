@@ -81,7 +81,7 @@ const NODES = [
     title: "Northwestern research, and two robots",
     body: [
       "Separately, I worked on a simulation tool for metal additive manufacturing through a research position at Northwestern. I'd rather point at it briefly than dwell on it. What it actually taught me was how to sit with a problem I didn't understand yet and take it apart piece by piece without pretending I already knew the answer.",
-      "The building never really stopped, either: a vision-guided tracking system, and now an autonomous drone that's still very much in progress. I'd rather say that plainly than describe it as something it isn't yet.",
+      "The building never really stopped, either: a vision-guided tracking system, and now an autonomous drone.",
     ],
   },
   {
