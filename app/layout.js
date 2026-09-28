@@ -3,6 +3,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CursorGlow } from "@/components/cursor-glow";
+import { IntroSplash } from "@/components/intro-splash";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -34,8 +35,23 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Synchronous on purpose (not next/script, which runs after first
+            paint): the page must stay hidden until intro-splash.jsx decides
+            whether to show itself, or the page flashes before the splash. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try {
+              if (sessionStorage.getItem("mmIntroSeen") !== "1") {
+                document.documentElement.setAttribute("data-intro-pending", "");
+              }
+            } catch (e) {}`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <CursorGlow />
+        <IntroSplash />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />

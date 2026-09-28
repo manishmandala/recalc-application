@@ -1,4 +1,4 @@
-import { DealSnapshot } from "@/components/deal-snapshot";
+import { HeroPath } from "@/components/hero-path";
 
 export function HeroSection() {
   return (
@@ -48,7 +48,7 @@ export function HeroSection() {
         </p>
       </div>
 
-      <DealSnapshot />
+      <HeroPath />
     </section>
   );
 }

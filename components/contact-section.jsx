@@ -4,7 +4,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="container mx-auto max-w-[1080px] border-t border-border px-6 py-24">
       <Reveal as="h2" className="mb-12 flex items-baseline gap-2.5 font-display text-[clamp(1.6rem,4vw,2rem)] font-extrabold tracking-[-0.01em]">
-        <span className="font-mono text-[1.1rem] font-semibold text-brand">04.</span> Contact
+        <span className="font-mono text-[1.1rem] font-semibold text-brand">05.</span> Contact
       </Reveal>
 
       <Reveal>

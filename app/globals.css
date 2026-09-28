@@ -25,19 +25,25 @@
 
 :root {
   color-scheme: dark;
-  --background: #131a17;
+  --background: #0f1623;
   --foreground: #f3eee8;
-  --card: #19221e;
+  --card: #162031;
   --card-foreground: #f3eee8;
-  --muted: #19221e;
-  --muted-foreground: #a3b1a8;
-  --border: #29352f;
+  --muted: #162031;
+  --muted-foreground: #a2b0c6;
+  --border: #26324a;
   --radius: 0.75rem;
 
   --brand: #f5a742;
   --brand-hover: #ffc06b;
-  --sky-top: #1c2a2c;
-  --sky-bottom: #4b4436;
+  --sky-top: #15223a;
+  --sky-bottom: #4a4a58;
+}
+
+/* Keeps the page invisible until intro-splash.jsx has mounted and decided
+   whether to show itself; see the inline script in layout.js. */
+html[data-intro-pending] body {
+  opacity: 0;
 }
 
 @layer base {
