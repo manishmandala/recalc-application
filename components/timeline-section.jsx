@@ -63,6 +63,7 @@ const NODES = [
     title: "Choosing mechanical engineering",
     body: [
       "I looked at finance seriously before college and picked mechanical engineering instead. Not because the curiosity about business went away, but because I figured it would follow me regardless of major, and I wanted four years that forced a different kind of discipline first. Betting on the harder unknown felt like the right trade.",
+      "It wasn't only a career decision, either. I wanted to grow into a certain kind of person: someone who stays patient with a problem that won't give, who can be stuck or wrong for a while without getting rattled, and who keeps going when the first answer fails. Engineering builds that whether you want it to or not. Those habits show up well outside of class too, in how I handle setbacks, how I work with people when a plan falls apart, and how I approach anything I'm new at.",
     ],
   },
   {
@@ -97,7 +98,7 @@ const NODES = [
   },
   {
     era: "Right Now",
-    pin: "Where This Leads",
+    pin: "Right Now",
     icon: FaSeedling,
     title: "Tying it together",
     body: [
@@ -119,15 +120,15 @@ const POINTS = [
   [600, 350],
   [735, 305],
   [870, 355],
-  [1005, 312],
-  [1140, 322],
+  [1005, 305],
+  [1140, 358],
 ];
 const ROAD_D =
-  "M60,330 C82.5,325.0 150.0,296.3 195.0,300.0 C240.0,303.7 285.0,350.3 330.0,352.0 C375.0,353.7 420.0,310.3 465.0,310.0 C510.0,309.7 555.0,350.8 600.0,350.0 C645.0,349.2 690.0,304.2 735.0,305.0 C780.0,305.8 825.0,353.8 870.0,355.0 C915.0,356.2 960.0,317.5 1005.0,312.0 C1050.0,306.5 1117.5,320.3 1140.0,322.0";
+  "M60,330 C82.5,325.0 150.0,296.3 195.0,300.0 C240.0,303.7 285.0,350.3 330.0,352.0 C375.0,353.7 420.0,310.3 465.0,310.0 C510.0,309.7 555.0,350.8 600.0,350.0 C645.0,349.2 690.0,304.2 735.0,305.0 C780.0,305.8 825.0,355.0 870.0,355.0 C915.0,355.0 960.0,304.5 1005.0,305.0 C1050.0,305.5 1117.5,349.2 1140.0,358.0";
 // Exact cumulative arc-length of ROAD_D at each point, sampled from the real
 // bezier curve rather than guessed - the highlighted "traveled" segment
 // needs to end exactly at the active pin, not an approximation of it.
-const CUM_LENGTHS = [0, 139.1, 284.9, 427.6, 569.6, 713.2, 858.5, 1001.2, 1136.9];
+const CUM_LENGTHS = [0.0, 139.1, 284.9, 427.6, 569.6, 713.2, 858.6, 1004.2, 1150.3];
 const VB_W = 1200;
 const VB_H = 420;
 const HILLS_D = "M0,250 Q120,200 300,235 T600,225 T900,240 T1200,215 L1200,420 L0,420 Z";

@@ -20,7 +20,7 @@ export function HeroSection() {
         </p>
         <p className="mx-auto mb-7 max-w-[540px] text-[0.98rem] leading-relaxed text-muted-foreground/90 md:mx-0">
           This site is my application project for Recalc's Finance Accelerator, and my attempt at explaining
-          how I ended up here without pretending I've already got it figured out.
+          how I ended up here.
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 md:justify-start">
