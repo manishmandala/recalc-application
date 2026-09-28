@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CursorGlow } from "@/components/cursor-glow";
 import { IntroSplash } from "@/components/intro-splash";
+import { SiteBackdrop } from "@/components/site-backdrop";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -50,10 +51,11 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <SiteBackdrop />
         <CursorGlow />
         <IntroSplash />
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main className="relative z-[1] flex-1">{children}</main>
         <SiteFooter />
       </body>
     </html>

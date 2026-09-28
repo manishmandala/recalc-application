@@ -18,7 +18,7 @@ export function HeroSection() {
         </p>
 
         <p className="mx-auto mb-7 max-w-[500px] font-display text-[1.15rem] font-medium leading-snug text-muted-foreground md:mx-0">
-          Mechanical engineering student at Ohio State. I&apos;ve always wanted to know{" "}
+          I&apos;ve always wanted to know{" "}
           <span className="text-foreground">why things work</span>: first machines, then businesses, then
           people. Private equity is where all three meet.
         </p>

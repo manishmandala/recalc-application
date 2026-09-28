@@ -46,6 +46,18 @@ html[data-intro-pending] body {
   opacity: 0;
 }
 
+/* Slow drift for the background streams; off for reduced-motion users. */
+@keyframes backdrop-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-18px, 12px, 0) scale(1.02); }
+}
+.backdrop-drift {
+  animation: backdrop-drift 24s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .backdrop-drift { animation: none; }
+}
+
 @layer base {
   * {
     @apply border-border;
