@@ -57,11 +57,13 @@ export function QuestionSection() {
 
       <Reveal delay={0.25}>
         <p className="text-[1.05rem] leading-relaxed text-foreground/90">
-          I also want to be a good member of the community, not just a student in it. Phi Chi Theta taught me
-          that I learn fastest in a room of sharp people who ask questions out loud, and I try to be one of
-          them. I'd bring an engineer's habit of asking why a model says what it says, a willingness to be
-          wrong in front of people if it gets us to the right answer faster, and a real interest in how
-          everyone else in the cohort got to the same place from a completely different starting point.
+          The other reason is the community. Recalc brings together students who are drawn to the same
+          questions but come from completely different disciplines, which means everyone takes a problem
+          apart a little differently. Phi Chi Theta taught me that I grow fastest in a room like that, where
+          someone else's way of thinking exposes a blind spot in mine. I'd also like to add to that mix, not
+          just learn from it. As a mechanical engineer I'm used to breaking systems into parts, testing one
+          assumption at a time, and asking why a model says what it says, and I think that angle is useful
+          to have in a room full of people who were trained to see the same problem another way.
         </p>
       </Reveal>
     </section>
