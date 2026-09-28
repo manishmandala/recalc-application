@@ -49,7 +49,7 @@ export function HeroSection() {
         <div className="mt-10 flex flex-wrap justify-center gap-8 md:justify-start">
           <a href="#timeline" className="group flex flex-col">
             <span className="font-display text-[1.6rem] font-extrabold text-brand transition-transform group-hover:-translate-y-0.5">
-              8
+              9
             </span>
             <span className="font-mono text-[0.68rem] tracking-[0.06em] text-muted-foreground uppercase">
               stops on the map

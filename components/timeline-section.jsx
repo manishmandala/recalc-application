@@ -6,6 +6,7 @@ import {
   FaLocationDot,
   FaCarSide,
   FaBolt,
+  FaFutbol,
   FaRobot,
   FaBriefcase,
   FaCompass,
@@ -24,6 +25,16 @@ const NODES = [
     title: "Fan remotes",
     body: [
       "As a kid I pulled apart fan remotes just to see how the switches worked, then tried to figure out if I could get one remote to control a fan in a different room. It never fully worked. I kept doing it anyway, because something in the room was operating on rules I could actually go find.",
+    ],
+  },
+  {
+    era: "Growing Up",
+    pin: "Soccer & FIFA",
+    icon: FaFutbol,
+    title: "Manager mode",
+    body: [
+      "The first place I really thought about strategy was soccer, and specifically FIFA's manager mode. I'd spend hours taking over a team that wasn't working and trying to rebuild it: how to spend a limited transfer budget, who was worth buying, who to sell, and which tactics actually fit the players I had instead of the ones I wished I had. Every season told me whether my calls were right.",
+      "Eventually I started bringing that same thinking onto the actual field, paying attention to why one formation or matchup worked and another fell apart. Looking back, that was the first version of a mindset that has stuck with me through everything since: look at the whole system, figure out what's really driving results, and decide where limited resources will do the most good.",
     ],
   },
   {
@@ -90,7 +101,7 @@ const NODES = [
     icon: FaSeedling,
     title: "Tying it together",
     body: [
-      "Put the fan remotes, the robots, the businesses, and the finance clubs next to each other and they stop looking like a scattered resume. They're the same instinct pointed at different material: take something apart, find what's actually driving it, and see if there's a better way to put it back together.",
+      "Put the fan remotes, the manager mode saves, the robots, the businesses, and the finance clubs next to each other and they stop looking like a scattered resume. They're the same instinct pointed at different material: take something apart, find what's actually driving it, and see if there's a better way to put it back together.",
       "Engineering gave me the discipline. The local businesses gave me the practice. PEVC and Scarlet gave me the vocabulary. What I don't have yet is the rigor to make that instinct hold up under real numbers, which is exactly the gap Recalc is built to close.",
     ],
   },
@@ -102,20 +113,21 @@ const NODES = [
 // without touching this geometry.
 const POINTS = [
   [60, 330],
-  [214, 300],
-  [369, 355],
-  [523, 310],
-  [677, 350],
-  [831, 305],
-  [986, 355],
-  [1140, 320],
+  [195, 300],
+  [330, 352],
+  [465, 310],
+  [600, 350],
+  [735, 305],
+  [870, 355],
+  [1005, 312],
+  [1140, 322],
 ];
 const ROAD_D =
-  "M60,330 C85.7,325.0 162.5,295.8 214.0,300.0 C265.5,304.2 317.5,353.3 369.0,355.0 C420.5,356.7 471.7,310.8 523.0,310.0 C574.3,309.2 625.7,350.8 677.0,350.0 C728.3,349.2 779.5,304.2 831.0,305.0 C882.5,305.8 934.5,352.5 986.0,355.0 C1037.5,357.5 1114.3,325.8 1140.0,320.0";
+  "M60,330 C82.5,325.0 150.0,296.3 195.0,300.0 C240.0,303.7 285.0,350.3 330.0,352.0 C375.0,353.7 420.0,310.3 465.0,310.0 C510.0,309.7 555.0,350.8 600.0,350.0 C645.0,349.2 690.0,304.2 735.0,305.0 C780.0,305.8 825.0,353.8 870.0,355.0 C915.0,356.2 960.0,317.5 1005.0,312.0 C1050.0,306.5 1117.5,320.3 1140.0,322.0";
 // Exact cumulative arc-length of ROAD_D at each point, sampled from the real
 // bezier curve rather than guessed - the highlighted "traveled" segment
 // needs to end exactly at the active pin, not an approximation of it.
-const CUM_LENGTHS = [0, 157.6, 323.3, 485.0, 645.2, 806.8, 970.8, 1129.5];
+const CUM_LENGTHS = [0, 139.1, 284.9, 427.6, 569.6, 713.2, 858.5, 1001.2, 1136.9];
 const VB_W = 1200;
 const VB_H = 420;
 const HILLS_D = "M0,250 Q120,200 300,235 T600,225 T900,240 T1200,215 L1200,420 L0,420 Z";
