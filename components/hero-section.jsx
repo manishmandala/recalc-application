@@ -13,6 +13,9 @@ export function HeroSection() {
         <h1 className="mb-5 font-display text-[clamp(2.4rem,6vw,3.6rem)] font-extrabold leading-[1.1] tracking-[-0.02em]">
           Manish Mandala
         </h1>
+        <p className="mb-5 font-mono text-[0.75rem] tracking-[0.06em] text-muted-foreground uppercase">
+          Mechanical Engineering &middot; Ohio State &middot; Dean&apos;s List
+        </p>
 
         <p className="mx-auto mb-7 max-w-[500px] font-display text-[1.15rem] font-medium leading-snug text-muted-foreground md:mx-0">
           Mechanical engineering student at Ohio State. I&apos;ve always wanted to know{" "}

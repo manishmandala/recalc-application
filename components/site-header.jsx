@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { href: "#timeline", label: "How I Got Here" },
   { href: "#why-things-work", label: "Why Things Work" },
   { href: "#long-game", label: "The Long Game" },
+  { href: "#learning", label: "Learning" },
   { href: "#thesis", label: "The Thesis" },
   { href: "#contact", label: "Contact" },
 ];

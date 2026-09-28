@@ -86,11 +86,12 @@ const NODES = [
     pin: "Phi Chi Theta",
     icon: FaPeopleGroup,
     title: "Phi Chi Theta",
-    tldr: "Found people a few steps ahead of me who asked the same questions out loud.",
+    tldr: "The community that pushes me to be better, and showed me why different perspectives matter.",
     skill: "Community",
     body: [
-      "In college I joined Phi Chi Theta, a professional business fraternity, mostly because I wanted to be around people who took business as seriously as I did, which wasn't easy to find in a schedule full of engineering classes. What I actually got out of it wasn't a class or a workshop. It was people: upperclassmen a few interviews ahead of me, professionals willing to tell you what actually mattered instead of what sounded good in a meeting. Being in a room where you're not the only one asking a question turns out to speed up how fast you figure things out.",
-      "That's part of why Recalc matters to me beyond the curriculum itself. A cohort full of people from genuinely different backgrounds who all happen to be sharp about breaking down a hard problem is the same thing that made Phi Chi Theta worth my time in the first place. I'd rather learn this next layer of finance surrounded by people like that than alone with a textbook.",
+      "In college I joined Phi Chi Theta, a professional business fraternity, because I wanted to be around people who took business as seriously as I did, which wasn't easy to find in a schedule full of engineering classes. It has become the community that shapes me most. The people there are ambitious and similar-minded, and being around them raises my own standard without anyone having to say a word.",
+      "What surprised me was how much the differences matter. People come in with different backgrounds, majors, and ways of thinking, and the best conversations happen when someone sees a problem in a way I never would have. Upperclassmen a few interviews ahead of me and professionals willing to say what actually matters have shown me that you grow fastest when you surround yourself with people who push you and think differently than you do.",
+      "That's exactly what I'm looking for in Recalc: a cohort of people who care about the same things but come from different places, and who make each other better.",
     ],
   },
   {
@@ -98,11 +99,12 @@ const NODES = [
     pin: "Learning Finance",
     icon: FaChartLine,
     title: "Learning finance on purpose",
-    tldr: "Buckeye PEVC analyst and Scarlet Investment Group: learning how investors actually decide.",
+    tldr: "Researching startups at Buckeye PEVC, and trying to beat the market through Scarlet Investment Group.",
     skill: "Finance fundamentals",
     body: [
       "Alongside that, I started actually studying the finance side instead of admiring it from a distance. As a business analyst at Buckeye PEVC, Ohio State's private equity and venture capital group, I've been learning how LBOs work, how PE and VC investors approach a decision differently, and what separates a business that's fixable from one that simply isn't going to work.",
-      "Through Scarlet Investment Group I found the version of finance that runs on math instead of instinct, which appealed to the engineer in me more than I expected. I haven't run a deal or managed a real portfolio. What I've done is get serious about understanding how the people who do make their decisions.",
+      "My interest in finance really comes from two places. The first is startups: researching them, figuring out which ones have something real, and eventually building my own. The second is the stock market. I love investing and the challenge of trying to beat the market, and especially the strategy behind an investment thesis: deciding what you believe about a company, why, and what would prove you wrong.",
+      "Scarlet Investment Group is where I get to practice that second part, and it's the version of finance that runs on math and discipline instead of instinct, which appeals to the engineer in me. I haven't run a deal or managed a real portfolio. What I've done is get serious about understanding how the people who do make their decisions.",
     ],
   },
   {

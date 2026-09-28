@@ -15,8 +15,8 @@ const THESES = [
   {
     icon: FaRocket,
     kicker: "Why VC",
-    line: "The same game, played earlier.",
-    body: "Instead of fixing something that already exists, you're betting on something before it's proven, which means judging people and markets as much as numbers. That's where the psychology side pulls at me most: why a founder makes the calls they make, and why customers will or won't show up for something new.",
+    line: "The same game, played earlier. And it's where startups live.",
+    body: "Instead of fixing something that already exists, you're betting on something before it's proven, which means judging people and markets as much as numbers. That's where the psychology side pulls at me most: why a founder makes the calls they make, and why customers will or won't show up for something new. I already spend time researching startups for fun, and I want to build one myself.",
   },
   {
     icon: FaGraduationCap,
@@ -134,7 +134,7 @@ export function QuestionSection() {
   return (
     <section id="thesis" className="container mx-auto max-w-[1080px] border-t border-border px-6 py-24">
       <Reveal as="h2" className="mb-8 flex items-baseline gap-2.5 font-display text-[clamp(1.6rem,4vw,2rem)] font-extrabold tracking-[-0.01em]">
-        <span className="font-mono text-[1.1rem] font-semibold text-brand">04.</span> The Thesis
+        <span className="font-mono text-[1.1rem] font-semibold text-brand">05.</span> The Thesis
       </Reveal>
 
       <Reveal>
@@ -163,7 +163,7 @@ export function QuestionSection() {
         <h3 className="mt-16 mb-2 font-display text-[1.3rem] font-bold text-foreground">The community</h3>
         <p className="mb-6 max-w-[680px] text-[0.97rem] leading-relaxed text-muted-foreground">
           Recalc brings together students who are drawn to the same questions but come from completely different
-          disciplines. Phi Chi Theta taught me I grow fastest in a room like that.
+          disciplines. Phi Chi Theta is the community that pushes me most right now, and it taught me that you grow fastest around similar-minded people who think differently than you do. I want more of that.
         </p>
       </Reveal>
 
@@ -175,7 +175,7 @@ export function QuestionSection() {
             </p>
             <ul className="flex flex-col gap-2.5 text-[0.93rem] leading-relaxed text-foreground/90">
               <li>People who take a problem apart differently than I do, and expose the blind spots in how I think.</li>
-              <li>Peers who ask hard questions out loud, which is how I learn fastest.</li>
+              <li>Ambitious peers who push me to raise my own standard, the way Phi Chi Theta does.</li>
               <li>The technical tools to back up my instincts with real numbers.</li>
             </ul>
           </div>
