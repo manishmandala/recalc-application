@@ -14,6 +14,11 @@ import {
   FaChartLine,
   FaFlask,
   FaSeedling,
+  FaPlay,
+  FaPause,
+  FaChevronLeft,
+  FaChevronRight,
+  FaChevronDown,
 } from "react-icons/fa6";
 import { Reveal } from "@/components/reveal";
 
@@ -23,6 +28,8 @@ const NODES = [
     pin: "Childhood",
     icon: FaBolt,
     title: "Fan remotes",
+    tldr: "Took apart fan remotes to find the rules hiding inside them.",
+    skill: "Curiosity",
     body: [
       "As a kid I pulled apart fan remotes just to see how the switches worked, then tried to figure out if I could get one remote to control a fan in a different room. It never fully worked. I kept doing it anyway, because something in the room was operating on rules I could actually go find.",
     ],
@@ -32,6 +39,8 @@ const NODES = [
     pin: "Soccer & FIFA",
     icon: FaFutbol,
     title: "Manager mode",
+    tldr: "Spent hours rebuilding FIFA teams on a fixed budget. My first lesson in allocating capital.",
+    skill: "Strategy",
     body: [
       "The first place I really thought about strategy was soccer, and specifically FIFA's manager mode. I'd spend hours taking over a team that wasn't working and trying to rebuild it: how to spend a limited transfer budget, who was worth buying, who to sell, and which tactics actually fit the players I had instead of the ones I wished I had. Every season told me whether my calls were right.",
       "Eventually I started bringing that same thinking onto the actual field, paying attention to why one formation or matchup worked and another fell apart. Looking back, that was the first version of a mindset that has stuck with me through everything since: look at the whole system, figure out what's really driving results, and decide where limited resources will do the most good.",
@@ -42,6 +51,8 @@ const NODES = [
     pin: "Middle School",
     icon: FaRobot,
     title: "Robotics, and a bag of snow",
+    tldr: "Led a robotics team, and once packed snow around an overheating robot at states to keep it running.",
+    skill: "Debugging under pressure",
     body: [
       "By middle school the same habit had a name: robotics. I was team lead, which meant I helped decide how we'd design and build the robot, but I also spent plenty of time elbow deep in assembly, testing, and the slow process of debugging. What I loved was that a defect was never a mystery for long. You could see it, chase down why it was happening, change one thing, and test again.",
       "The moment I still think about happened at a state competition. Our battery and motors were overheating and we had no cooling spray on hand. So I took the robot outside into the winter cold and packed snow into bags around the hot parts, just to buy enough time to keep troubleshooting. It wasn't a real fix. It was what we had.",
@@ -52,6 +63,8 @@ const NODES = [
     pin: "High School",
     icon: FaBriefcase,
     title: "DECA and the idea of strategy",
+    tldr: "Noticed that equal effort lands in very different places, and wanted to know why.",
+    skill: "Business sense",
     body: [
       "High school pointed that same question somewhere new. Through DECA I started noticing that two ideas could take the same amount of effort and land in completely different places, and I wanted to know why one worked and the other didn't.",
     ],
@@ -61,6 +74,8 @@ const NODES = [
     pin: "Choosing ME",
     icon: FaCompass,
     title: "Choosing mechanical engineering",
+    tldr: "Picked the harder discipline first, for the person it would make me, not just the job.",
+    skill: "Grit",
     body: [
       "I looked at finance seriously before college and picked mechanical engineering instead. Not because the curiosity about business went away, but because I figured it would follow me regardless of major, and I wanted four years that forced a different kind of discipline first. Betting on the harder unknown felt like the right trade.",
       "It wasn't only a career decision, either. I wanted to grow into a certain kind of person: someone who stays patient with a problem that won't give, who can be stuck or wrong for a while without getting rattled, and who keeps going when the first answer fails. Engineering builds that whether you want it to or not. Those habits show up well outside of class too, in how I handle setbacks, how I work with people when a plan falls apart, and how I approach anything I'm new at.",
@@ -71,6 +86,8 @@ const NODES = [
     pin: "Phi Chi Theta",
     icon: FaPeopleGroup,
     title: "Phi Chi Theta",
+    tldr: "Found people a few steps ahead of me who asked the same questions out loud.",
+    skill: "Community",
     body: [
       "In college I joined Phi Chi Theta, a professional business fraternity, mostly because I wanted to be around people who took business as seriously as I did, which wasn't easy to find in a schedule full of engineering classes. What I actually got out of it wasn't a class or a workshop. It was people: upperclassmen a few interviews ahead of me, professionals willing to tell you what actually mattered instead of what sounded good in a meeting. Being in a room where you're not the only one asking a question turns out to speed up how fast you figure things out.",
       "That's part of why Recalc matters to me beyond the curriculum itself. A cohort full of people from genuinely different backgrounds who all happen to be sharp about breaking down a hard problem is the same thing that made Phi Chi Theta worth my time in the first place. I'd rather learn this next layer of finance surrounded by people like that than alone with a textbook.",
@@ -81,6 +98,8 @@ const NODES = [
     pin: "Learning Finance",
     icon: FaChartLine,
     title: "Learning finance on purpose",
+    tldr: "Buckeye PEVC analyst and Scarlet Investment Group: learning how investors actually decide.",
+    skill: "Finance fundamentals",
     body: [
       "Alongside that, I started actually studying the finance side instead of admiring it from a distance. As a business analyst at Buckeye PEVC, Ohio State's private equity and venture capital group, I've been learning how LBOs work, how PE and VC investors approach a decision differently, and what separates a business that's fixable from one that simply isn't going to work.",
       "Through Scarlet Investment Group I found the version of finance that runs on math instead of instinct, which appealed to the engineer in me more than I expected. I haven't run a deal or managed a real portfolio. What I've done is get serious about understanding how the people who do make their decisions.",
@@ -91,6 +110,8 @@ const NODES = [
     pin: "Research & Robots",
     icon: FaFlask,
     title: "Northwestern research, and two robots",
+    tldr: "Northwestern simulation research, a vision-guided tracker, and an autonomous drone.",
+    skill: "Patience with the unknown",
     body: [
       "Separately, I worked on a simulation tool for metal additive manufacturing through a research position at Northwestern. I'd rather point at it briefly than dwell on it. What it actually taught me was how to sit with a problem I didn't understand yet and take it apart piece by piece without pretending I already knew the answer.",
       "The building never really stopped, either: a vision-guided tracking system, and now an autonomous drone.",
@@ -101,6 +122,8 @@ const NODES = [
     pin: "Right Now",
     icon: FaSeedling,
     title: "Tying it together",
+    tldr: "Same instinct, different material. Now I need the numbers to back it up.",
+    skill: "Next up: Recalc",
     body: [
       "Put the fan remotes, the manager mode saves, the robots, the businesses, and the finance clubs next to each other and they stop looking like a scattered resume. They're the same instinct pointed at different material: take something apart, find what's actually driving it, and see if there's a better way to put it back together.",
       "Engineering gave me the discipline. The local businesses gave me the practice. PEVC and Scarlet gave me the vocabulary. What I don't have yet is the rigor to make that instinct hold up under real numbers, which is exactly the gap Recalc is built to close.",
@@ -283,21 +306,48 @@ function MobileStops({ active, onSelect }) {
 
 export function TimelineSection() {
   const [active, setActive] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const [driving, setDriving] = useState(false);
   const node = NODES[active];
+  const last = NODES.length - 1;
 
+  // Only left/right: up/down belong to page scrolling, and hijacking them
+  // made the rest of the page hard to read with a keyboard.
   useEffect(() => {
     function handleKey(e) {
-      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
-        e.preventDefault();
-        setActive((a) => Math.min(a + 1, NODES.length - 1));
-      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
-        e.preventDefault();
+      if (e.key === "ArrowRight") {
+        setDriving(false);
+        setActive((a) => Math.min(a + 1, last));
+      } else if (e.key === "ArrowLeft") {
+        setDriving(false);
         setActive((a) => Math.max(a - 1, 0));
       }
     }
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, []);
+  }, [last]);
+
+  // Auto-drive: a hands-off tour for a reader who just wants the highlights.
+  useEffect(() => {
+    if (!driving) return;
+    if (active >= last) {
+      setDriving(false);
+      return;
+    }
+    const id = setTimeout(() => setActive((a) => a + 1), 4200);
+    return () => clearTimeout(id);
+  }, [driving, active, last]);
+
+  function toggleDrive() {
+    if (!driving && active >= last) setActive(0);
+    setExpanded(false);
+    setDriving((d) => !d);
+  }
+
+  function select(i) {
+    setDriving(false);
+    setActive(Math.max(0, Math.min(last, i)));
+  }
 
   return (
     <section id="timeline" className="container mx-auto max-w-[1080px] border-t border-border px-6 py-24">
@@ -305,45 +355,121 @@ export function TimelineSection() {
         <span className="font-mono text-[1.1rem] font-semibold text-brand">01.</span> How I Got Here
       </Reveal>
       <Reveal>
-        <p className="mb-8 max-w-[620px] text-[0.95rem] text-muted-foreground">
-          Click a stop on the road, or use the arrow keys to drive through it yourself. The short version:
-          the same curiosity kept showing up wearing different clothes.
-        </p>
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+          <p className="max-w-[560px] text-[0.95rem] text-muted-foreground">
+            Nine stops, one habit that kept showing up. Hit auto-drive for the highlights, or click any stop.
+          </p>
+          <button
+            type="button"
+            onClick={toggleDrive}
+            className="flex items-center gap-2 rounded-lg bg-brand px-4 py-2 text-[0.85rem] font-semibold text-[#2a1608] transition-colors hover:bg-brand-hover"
+          >
+            {driving ? <FaPause className="h-3 w-3" /> : <FaPlay className="h-3 w-3" />}
+            {driving ? "Pause" : active >= last ? "Drive it again" : "Auto-drive"}
+          </button>
+        </div>
       </Reveal>
 
       <div className="mb-6 md:hidden">
-        <MobileStops active={active} onSelect={setActive} />
+        <MobileStops active={active} onSelect={select} />
       </div>
 
       <Reveal>
-        <RoadMap active={active} onSelect={setActive} />
+        <RoadMap active={active} onSelect={select} />
       </Reveal>
 
-      <div className="mt-10 min-h-[220px] max-w-[680px]">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="mb-2 flex items-center gap-3">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-brand">
-                <node.icon className="h-4 w-4" />
-              </span>
-              <span className="font-mono text-[0.72rem] font-bold tracking-[0.08em] text-brand uppercase">
-                {node.era}
-              </span>
-            </div>
-            <h3 className="mb-4 font-display text-[1.3rem] font-bold text-foreground">{node.title}</h3>
-            <div className="flex flex-col gap-4 text-[0.98rem] leading-relaxed text-muted-foreground">
-              {node.body.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+      <div className="mt-4 h-[3px] w-full overflow-hidden rounded-full bg-border">
+        <motion.div
+          className="h-full bg-brand"
+          initial={false}
+          animate={{ width: `${(active / last) * 100}%` }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </div>
+
+      <div className="mt-8 grid gap-8 md:grid-cols-[1fr_auto]">
+        <div className="min-h-[200px] max-w-[680px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="mb-3 flex flex-wrap items-center gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand/40 bg-brand/10 text-brand">
+                  <node.icon className="h-4 w-4" />
+                </span>
+                <span className="font-mono text-[0.72rem] font-bold tracking-[0.08em] text-brand uppercase">
+                  {node.era}
+                </span>
+                <span className="rounded-full border border-border px-2.5 py-0.5 font-mono text-[0.65rem] tracking-[0.04em] text-muted-foreground uppercase">
+                  Built: {node.skill}
+                </span>
+              </div>
+              <h3 className="mb-2 font-display text-[1.35rem] font-bold text-foreground">{node.title}</h3>
+              <p className="mb-4 font-display text-[1.1rem] leading-snug text-foreground/90">{node.tldr}</p>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setDriving(false);
+                  setExpanded((v) => !v);
+                }}
+                aria-expanded={expanded}
+                className="flex items-center gap-1.5 font-mono text-[0.72rem] font-semibold tracking-[0.04em] text-brand uppercase hover:text-brand-hover"
+              >
+                {expanded ? "Hide the full story" : "Read the full story"}
+                <FaChevronDown className={`h-2.5 w-2.5 transition-transform ${expanded ? "rotate-180" : ""}`} />
+              </button>
+
+              <AnimatePresence initial={false}>
+                {expanded && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden"
+                  >
+                    <div className="flex flex-col gap-4 pt-4 text-[0.97rem] leading-relaxed text-muted-foreground">
+                      {node.body.map((p, i) => (
+                        <p key={i}>{p}</p>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="flex items-start gap-2 md:flex-col md:items-end">
+          <span className="font-mono text-[0.72rem] tracking-[0.06em] text-muted-foreground uppercase md:mb-1">
+            Stop {active + 1} / {NODES.length}
+          </span>
+          <div className="ml-auto flex gap-2 md:ml-0">
+            <button
+              type="button"
+              onClick={() => select(active - 1)}
+              disabled={active === 0}
+              aria-label="Previous stop"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-brand hover:text-brand disabled:opacity-30"
+            >
+              <FaChevronLeft className="h-3 w-3" />
+            </button>
+            <button
+              type="button"
+              onClick={() => select(active + 1)}
+              disabled={active === last}
+              aria-label="Next stop"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-brand hover:text-brand disabled:opacity-30"
+            >
+              <FaChevronRight className="h-3 w-3" />
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );
